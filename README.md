@@ -1,4 +1,4 @@
-# pulpal подключение платежной системе
+# pulpal подключение платежной системы
 Для совершения оплаты пользователю необходимо перейти по ссылке
 https://pay-dev.pulpal.az/payment?paymentdata=eyJwcm9kdWN0VW5pcXVlQ29kZSI6ICIzNTk0NCJ9&email=821test
 
