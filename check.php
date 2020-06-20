@@ -6,7 +6,7 @@ $header = apache_request_headers();
 $pulpal_signature = $header["Signature"]; //Получаем сигнатуру
 $pulpal_nonce = intval($header["Nonce"]);
 //формируем нашу сигнатуру
-$my_signature = base64_encode(pack('H*',hash_hmac('sha256', "https://www.xedzi.com/check.php" . $pulpal_nonce . $request_body, $key)));
+$my_signature = base64_encode(pack('H*',hash_hmac('sha256', "https://youdomain.com/check.php" . $pulpal_nonce . $request_body, $key)));
 //если сигнатуры не совпадают выходим с ошибкой
 if ($my_signature != $pulpal_signature) {
 	exit('Верификация не пройдена. SHA1_HASH не совпадает.'); // останавливаем скрипт. у вас тут может быть свой код.
