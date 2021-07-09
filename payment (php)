@@ -1,0 +1,41 @@
+<?php
+
+/*
+ * Bu hissede odenisle bagli
+ * route-lari yaziriq
+ * */
+Route::group(['prefix' => 'payment', 'as' => 'payment.'], function () {
+    /*
+     * Url Generate
+     * */
+    Route::get('url-generate', function () {
+        $pulpal = new PulPayPayment();
+        $pulpal->setTestMerchantId(402);
+        $external = request()->query();
+        $price = @$external['price'] ? $external['price'] : 0;
+        $name = @$external['name'] ? $external['name'] : 'Demo Name';
+        $description = @$external['description'] ? $external['description'] : 'Demo Description';
+        $external = json_encode($external);
+        $url = $pulpal->getUrl($external, $price, $name, $description);
+        return $url;
+    })->name('url_generate');
+    /*
+     * Delivery
+     * Bu hissede delivery route-u
+     * yaziriq
+     * */
+    Route::post('delivery', function () {
+        $pulpal = new PulPayPayment();
+        return $pulpal->delivery();
+    });
+    /*
+    * Redirect
+    * Bu hissede redirect route-u
+    * yaziriq
+    * */
+    Route::post('redirect', function () {
+        $pulpal = new PulPayPayment();
+        return $pulpal->redirect();
+    });
+});
+
